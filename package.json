@@ -1,0 +1,50 @@
+{
+  "name": "advance-todo",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prebuild": "rm -rf dist",
+    "start": "npm run prebuild && parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rahulbaran/advance-todo.git"
+  },
+  "author": "Rahul kumar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rahulbaran/advance-todo/issues"
+  },
+  "homepage": "https://github.com/Rahulbaran/advance-todo#readme",
+  "prettier": {
+    "arrowParens": "avoid",
+    "trailingComma": "none",
+    "printWidth": 100,
+    "endOfLine": "auto"
+  },
+  "browserslist": {
+    "production": [
+      "> .25%",
+      "not dead",
+      "not op_mini all",
+      "not IE 11"
+    ],
+    "development": [
+      "last 2 chrome version",
+      "last 2 firefox version",
+      "last 2 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.7.0",
+    "eslint": "^8.25.0",
+    "eslint-config-prettier": "^8.5.0",
+    "parcel": "^2.7.0",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "mongodb": "^4.10.0"
+  }
+}
