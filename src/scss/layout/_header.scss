@@ -1,0 +1,15 @@
+.header {
+  background-color: var(--header-bg);
+  padding-inline: calc(var(--base-padding) * 2);
+
+  .todo-title {
+    font-family: var(--font-stack-briem-hand);
+    font-size: calc(var(--base-font-size) * 2.25);
+  }
+
+  .logo > img {
+    inline-size: 4rem;
+    aspect-ratio: 1/0.75;
+    filter: drop-shadow(2px 2px 1px var(--logo-shadow));
+  }
+}

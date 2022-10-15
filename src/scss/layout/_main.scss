@@ -1,0 +1,63 @@
+.main {
+  justify-self: center;
+  padding-block: calc(var(--base-padding) * 7) var(--base-padding);
+  padding-inline: calc(var(--base-padding) * 2);
+}
+
+.todo__input--wrapper {
+  background-color: var(--todo-input-bg);
+  inline-size: 20rem;
+  margin: 0 auto;
+  border-radius: calc(var(--base-border-radius) * 0.15);
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 2.8rem;
+  grid-template-rows: auto;
+  border: 1px solid var(--todo-input-border);
+
+  input {
+    padding: var(--base-padding) calc(var(--base-padding) * 1.25);
+    border-radius: calc(var(--base-border-radius) * 0.15);
+    font-size: calc(var(--base-font-size) * 1.2);
+    font-weight: var(--font-wt-medium);
+    background-color: var(--todo-input-bg);
+    border: none;
+    font-family: inherit;
+    letter-spacing: 0.5px;
+    text-overflow: ellipsis;
+    color: var(--text);
+    caret-color: var(--caret);
+    outline: none;
+
+    &::placeholder {
+      color: var(--todo-input-placeholder);
+    }
+  }
+
+  button {
+    justify-self: center;
+  }
+}
+
+.todos__container {
+  --scroll-padding-multiple: 1.25;
+  display: none;
+  margin-block-start: calc(var(--base-margin) * 3);
+  background-color: var(--todos-container-bg);
+  padding: calc(var(--base-padding) * 1.25);
+  inline-size: min(620px, 85vw);
+  box-shadow: 0 10px 10px hsl(var(--black) / 0.3);
+  max-block-size: 58vh;
+  overflow-y: auto;
+  scroll-snap-type: block mandatory;
+  scroll-padding-block-end: calc(var(--base-padding) * var(--scroll-padding-multiple));
+  border-radius: calc(var(--base-border-radius) * 0.2);
+
+  @media screen and (min-width: 48.0625em) {
+    --scroll-padding-multiple: 2.8;
+  }
+
+  @media screen and (min-width: 80em) {
+    --scroll-padding-multiple: 4;
+  }
+}

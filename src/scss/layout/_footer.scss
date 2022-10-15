@@ -1,0 +1,23 @@
+.footer {
+  grid-row: 3/4;
+  align-self: flex-end;
+  padding-inline-start: calc(var(--base-gap) * 2);
+
+  .copyright-txt {
+    font-size: calc(var(--base-font-size) * 1.05);
+    font-weight: var(--font-wt-medium);
+  }
+
+  .github-link {
+    margin-inline-start: auto;
+    background-color: var(--github-icon-bg);
+    padding-block-start: calc(var(--base-padding) * 6);
+    padding-inline: calc(var(--base-padding) * 4) calc(var(--base-padding) * 2);
+    clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%);
+
+    & > img {
+      inline-size: 2.5rem;
+      aspect-ratio: 1/0.9;
+    }
+  }
+}

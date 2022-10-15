@@ -25,17 +25,11 @@
   <body>
     <header class="header flex justify-space-between align-center gap-1">
       <a href="#" class="logo">
-        <img src="../public/logo&icons/logo.png" alt="todo logo" width="80px" height="80px" />
+        <img src="../public/logo&icons/logo.png" alt="todo logo" title="todo logo" />
       </a>
       <h1 class="todo-title">Advance todo</h1>
-      <button class="mode-btn btn">
-        <img
-          src="../public/logo&icons/sun.svg"
-          alt="sun icon"
-          width="25px"
-          height="25px"
-          title="change color mode"
-        />
+      <button class="color-mode-btn btn" title="change color mode">
+        <img src="../public/logo&icons/sun.svg" data-mode-icon alt="sun icon" />
       </button>
     </header>
 
@@ -47,105 +41,62 @@
           placeholder="create a todo"
           name="todo-field"
           spellcheck="false"
-          title="todo should be 5 to 255 characters long"
+          title="todo should be 5 to  characters long"
         />
-        <button class="btn add-btn">
-          <img
-            src="../public/logo&icons/plus.svg"
-            alt="plus icon"
-            width="20px"
-            height="20px"
-            title="todo add button"
-          />
+        <button class="btn add-btn" title="add todo">
+          <img src="../public/logo&icons/plus.svg" alt="plus icon" />
         </button>
       </div>
 
       <!------------ todo container  ------------->
       <div class="todos__container">
-        <div class="card" id="todo-1">
+        <!-- <div class="card flex justify-space-between align-center gap-2" id="todo-1">
           <p class="card__label">Rahulbaran</p>
           <div class="card__btns--wrapper">
-            <button class="btn edit-btn">
-              <img
-                src="../public/logo&icons/edit.svg"
-                alt="edit icon"
-                width="20px"
-                height="20px"
-                title="todo edit button"
-              />
+            <button class="btn edit-btn" title="edit todo">
+              <img src="../public/logo&icons/edit.svg" alt="edit icon" />
             </button>
-            <button class="btn delete-btn">
-              <img
-                src="../public/logo&icons/delete.svg"
-                alt="delete icon"
-                width="20px"
-                height="20px"
-                title="todo delete button"
-              />
+            <button class="btn delete-btn" title="delete todo">
+              <img src="../public/logo&icons/delete.svg" alt="delete icon" />
             </button>
-            <button class="btn update-btn">
-              <img
-                src="../public/logo&icons/update.svg"
-                alt="update icon"
-                width="20px"
-                height="20px"
-                title="todo update button"
-              />
+            <button class="btn update-btn" title="update todo">
+              <img src="../public/logo&icons/update.svg" alt="update icon" />
             </button>
           </div>
         </div>
 
-        <div class="card" id="todo-2">
+        <div class="card flex justify-space-between align-center gap-2" id="todo-2">
           <p class="card__label">Piyush Agarwal</p>
           <div class="card__btns--wrapper">
-            <button class="btn edit-btn">
-              <img
-                src="../public/logo&icons/edit.svg"
-                alt="edit icon"
-                width="20px"
-                height="20px"
-                title="todo edit button"
-              />
+            <button class="btn edit-btn" title="edit todo">
+              <img src="../public/logo&icons/edit.svg" alt="edit icon" />
             </button>
-            <button class="btn delete-btn">
-              <img
-                src="../public/logo&icons/delete.svg"
-                alt="delete icon"
-                width="20px"
-                height="20px"
-                title="todo delete button"
-              />
+            <button class="btn delete-btn" title="delete todo">
+              <img src="../public/logo&icons/delete.svg" alt="delete icon" />
             </button>
-            <button class="btn update-btn">
-              <img
-                src="../public/logo&icons/update.svg"
-                alt="update icon"
-                width="20px"
-                height="20px"
-                title="todo update button"
-              />
+            <button class="btn update-btn" title="update todo">
+              <img src="../public/logo&icons/update.svg" alt="update icon" />
             </button>
           </div>
-        </div>
+        </div> -->
       </div>
     </main>
 
-    <footer class="footer">
-      <p class="copyright-txt">&copy;Copyright reserved since 2022</p>
+    <footer class="footer flex align-flex-end justify-flex-start">
+      <p class="copyright-txt">&copy;Copyright reserved since <span></span></p>
 
       <a
         href="https://github.com/Rahulbaran/advance-todo"
         target="_blank"
         rel="noreferrer noopener"
+        class="github-link"
       >
-        <img
-          src="../public/logo&icons/github.svg"
-          alt=" github logo"
-          width="25px"
-          height="25px"
-          title="todo codebase"
-        />
+        <img src="../public/logo&icons/github.svg" alt=" github logo" title="todo codebase" />
       </a>
     </footer>
+
+    <script>
+      document.querySelector(".copyright-txt span").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

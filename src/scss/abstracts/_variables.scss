@@ -1,0 +1,93 @@
+:root {
+  --base-font-size: 1rem;
+  --base-padding: 0.5em;
+  --base-margin: 0.5em;
+  --base-border-radius: 20px;
+  --base-gap: 0.5rem;
+  --base-line-height: 1.5;
+
+  // Fonts weights
+  --font-wt-regular: 400;
+  --font-wt-medium: calc(var(--font-wt-regular, 400) + 100);
+  --font-wt-semi: calc(var(--font-wt-medium, 500) + 100);
+  --font-wt-bold: calc(var(--font-wt-semi, 600)+ 100);
+  --font-wt-xbold: calc(var(--font-wt-bold, 700) + 100);
+  --font-wt-black: calc(var(--font-wt-xbold, 800) + 100);
+
+  --font-stack-epilogue: "Epilogue", serif;
+  --font-stack-briem-hand: "Briem Hand", cursive;
+
+  // Colors
+  --green: 141 85% 23%;
+  --yellow-green: 81 77% 80%;
+  --grey: 309 3% 52%;
+  --black: 219 74% 5%;
+
+  --scroll-thumb-bg: hsl(219deg 74% 8%);
+  --scroll-track-bg: hsl(219deg 14% 58%);
+  --body-bg: hsl(var(--black));
+  --header-bg: hsl(219deg 74% 8%);
+  --icon-hover-bg: hsl(219deg 74% 12%);
+  --todo-input-bg: hsl(219deg, 64%, 8%);
+  --todos-container-bg: hsl(219deg 14% 38%);
+  --card-bg: hsl(219deg 74% 8%);
+  --logo-shadow: hsl(240 74% 5%/0.4);
+  --heading: hsl(var(--grey));
+  --text: hsl(var(--grey));
+  --todo-input-border: hsl(309deg 3% 22%);
+  --todo-input-placeholder: hsl(309deg 3% 32%);
+  --caret: hsl(309deg 3% 62%);
+  --github-icon-bg: hsl(219deg 74% 8%);
+
+  @media (prefers-color-scheme: light) {
+    --scroll-thumb-bg: hsl(81deg 74% 30%);
+    --scroll-track-bg: hsl(81deg 74% 70%);
+    --body-bg: hsl(var(--yellow-green));
+    --header-bg: hsl(81deg 77% 75%);
+    --icon-hover-bg: hsl(81deg 77% 68%);
+    --todos-container-bg: hsl(81deg 77% 85%);
+    --todo-input-bg: hsl(81deg 77% 83%);
+    --card-bg: hsl(81deg 77% 75%);
+    --heading: hsl(var(--green));
+    --text: hsl(var(--green));
+    --todo-input-border: hsl(141deg 40% 70%);
+    --todo-input-placeholder: hsl(141deg 25% 63%);
+    --caret: hsl(141deg 85% 43%);
+    --github-icon-bg: hsl(81deg 77% 70%);
+  }
+}
+
+.light-color-pallete {
+  --scroll-thumb-bg: hsl(81deg 74% 30%);
+  --scroll-track-bg: hsl(81deg 74% 70%);
+  --body-bg: hsl(var(--yellow-green));
+  --header-bg: hsl(81deg 77% 75%);
+  --icon-hover-bg: hsl(81deg 77% 68%);
+  --todos-container-bg: hsl(81deg 77% 85%);
+  --todo-input-bg: hsl(81deg 77% 83%);
+  --card-bg: hsl(81deg 77% 75%);
+  --heading: hsl(var(--green));
+  --text: hsl(var(--green));
+  --todo-input-border: hsl(141deg 40% 70%);
+  --todo-input-placeholder: hsl(141deg 25% 63%);
+  --caret: hsl(141deg 85% 43%);
+  --github-icon-bg: hsl(81deg 77% 70%);
+}
+
+.dark-color-pallete {
+  --scroll-thumb-bg: hsl(219deg 74% 8%);
+  --scroll-track-bg: hsl(219deg 14% 58%);
+  --body-bg: hsl(var(--black));
+  --header-bg: hsl(219deg 74% 8%);
+  --icon-hover-bg: hsl(219deg 74% 12%);
+  --todo-input-bg: hsl(219deg, 64%, 8%);
+  --todos-container-bg: hsl(219deg 14% 38%);
+  --card-bg: hsl(219deg 74% 8%);
+  --logo-shadow: hsl(240 74% 5%/0.4);
+  --heading: hsl(var(--grey));
+  --text: hsl(var(--grey));
+  --todo-input-border: hsl(309deg 3% 22%);
+  --todo-input-placeholder: hsl(309deg 3% 32%);
+  --caret: hsl(309deg 3% 62%);
+  --github-icon-bg: hsl(219deg 74% 8%);
+}

@@ -1,0 +1,27 @@
+:is(h1, h2, h3, h4, h5, h6) {
+  font-weight: var(--font-wt-black);
+  color: var(--heading);
+
+  &:not(h5, h6) {
+    line-height: calc(var(--base-line-height) / 1.5);
+  }
+}
+
+a,
+a:link {
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover {
+  text-decoration: underline 2px solid currentColor;
+}
+
+img {
+  display: block;
+}
+
+p {
+  font-size: calc(var(--base-font-size) * 1.15);
+  color: var(--text);
+}
