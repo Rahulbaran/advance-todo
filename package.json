@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "rm -rf dist",
     "start": "npm run prebuild && parcel src/index.html",
-    "build": "parcel build src/index.html"
+    "build": "parcel build src/index.html",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint --fix src/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,8 @@
     "arrowParens": "avoid",
     "trailingComma": "none",
     "printWidth": 100,
-    "endOfLine": "auto"
+    "endOfLine": "auto",
+    "semi": true
   },
   "browserslist": {
     "production": [
@@ -41,6 +43,7 @@
     "@parcel/transformer-sass": "^2.7.0",
     "eslint": "^8.25.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "parcel": "^2.7.0",
     "prettier": "^2.7.1"
   },
