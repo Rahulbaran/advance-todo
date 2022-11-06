@@ -1,19 +1,53 @@
 import moonIcon from "../../public/logo&icons/moon.svg";
 import sunIcon from "../../public/logo&icons/sun.svg";
+import editIcon from "../../public/logo&icons/edit.svg";
+import deleteIcon from "../../public/logo&icons/delete.svg";
+import updateIcon from "../../public/logo&icons/update.svg";
 
 // SELECTORS
-const todoInput = document.querySelector(".todo__input--field");
 const colorModeBtn = document.querySelector(".color-mode-btn");
 const modeBtnImg = colorModeBtn.querySelector("img");
+const toDoInputField = document.querySelector(".todo__input--field");
+const toDoBtn = document.querySelector(".add-btn");
+const toDosContainer = document.querySelector(".todos__container");
 
-// Functions
+// ---------------------- Functions ----------------------- //
 const updateImgAttr = (imgUrl, altText) => {
   modeBtnImg.src = imgUrl;
   modeBtnImg.setAttribute("alt", altText);
 };
 
+const addToDo = () => {
+  const todo = toDoInputField.value.trim();
+
+  if (todo.length >= 5 && todo.length <= 50) {
+    const toDoHtml = `<div class="card flex justify-space-between align-center gap-2" id="todo-1">
+    <p class="card__label">${todo}</p>
+    <div class="card__btns--wrapper">
+      <button class="btn edit-btn" title="edit todo">
+        <img src=${editIcon} alt="edit icon" />
+      </button>
+      <button class="btn delete-btn" title="delete todo">
+        <img src=${deleteIcon} alt="delete icon" />
+      </button>
+      <button class="btn update-btn" title="update todo">
+        <img src=${updateIcon} alt="update icon" />
+      </button>
+    </div>
+  </div>`;
+
+    toDosContainer.style.display = "block";
+    toDosContainer.insertAdjacentHTML("afterbegin", toDoHtml);
+
+    toDoInputField.value = "";
+    toDoInputField.focus();
+  }
+};
+
+/* ----------------- Event Handlers -------------------- */
+
 // Set focus to todo input field on window loading
-window.onload = () => todoInput.focus();
+window.onload = () => toDoInputField.focus();
 
 // Check User color-preference
 const userDarkPreference = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -21,7 +55,7 @@ if (userDarkPreference) {
   updateImgAttr(moonIcon, "moon icon");
 }
 
-// Event listener for colorModeBtn
+// Event handler for colorModeBtn with click event
 colorModeBtn.addEventListener("click", () => {
   const getModeIcon = modeBtnImg.getAttribute("alt");
 
@@ -35,3 +69,11 @@ colorModeBtn.addEventListener("click", () => {
     document.body.classList.add("dark-color-pallete");
   }
 });
+
+// Event Handler for todo add button with click event
+toDoBtn.addEventListener("click", addToDo);
+
+// Event Handler for window with enter key
+window.onkeydown = e => {
+  if (e.keyCode === 13) addToDo();
+};
