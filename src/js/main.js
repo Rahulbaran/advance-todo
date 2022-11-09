@@ -97,10 +97,23 @@ colorModeBtn.addEventListener("click", () => {
   }
 });
 
-// Event Handler for todo add button with click event
+// Event Handler for toDoBtn and Enter key
 toDoBtn.addEventListener("click", addToDo);
-
-// Event Handler for window with enter key
 window.onkeydown = e => {
   if (e.keyCode === 13) addToDo();
+};
+
+// Event Handler for todos container
+toDosContainer.onclick = e => {
+  if (e.target.matches(".delete-btn") || e.target.matches(".delete-icon")) {
+    const cardId = e.target.closest(".card").id.split("-")[1];
+
+    deleteToDoInDb(cardId)
+      .then(() => {
+        e.target.closest(".card").remove();
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
 };
