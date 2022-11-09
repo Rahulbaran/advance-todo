@@ -17,34 +17,61 @@ const updateImgAttr = (imgUrl, altText) => {
   modeBtnImg.setAttribute("alt", altText);
 };
 
-const addToDo = () => {
-  const todo = toDoInputField.value.trim();
+const addToDoInDb = async todo => {
+  try {
+    const response = await fetch(`/.netlify/functions/createTodo?todo=${todo}`);
 
-  if (todo.length >= 5 && todo.length <= 50) {
-    const toDoHtml = `<div class="card flex justify-space-between align-center gap-2" id="todo-1">
-    <p class="card__label">${todo}</p>
-    <div class="card__btns--wrapper">
-      <button class="btn edit-btn" title="edit todo">
-        <img src=${editIcon} alt="edit icon" />
-      </button>
-      <button class="btn delete-btn" title="delete todo">
-        <img src=${deleteIcon} alt="delete icon" />
-      </button>
-      <button class="btn update-btn" title="update todo">
-        <img src=${updateIcon} alt="update icon" />
-      </button>
-    </div>
-  </div>`;
-
-    toDosContainer.style.display = "block";
-    toDosContainer.insertAdjacentHTML("afterbegin", toDoHtml);
-
-    toDoInputField.value = "";
-    toDoInputField.focus();
+    return await response.json();
+  } catch (error) {
+    return error;
   }
 };
 
-/* ----------------- Event Handlers -------------------- */
+const deleteToDoInDb = async id => {
+  try {
+    const response = await fetch(`/.netlify/functions/deleteTodo?id=${id}`);
+
+    return response.text();
+  } catch (error) {
+    return error;
+  }
+};
+
+const addToDo = () => {
+  const regex = /^(\w)[\w\s]{3,48}(\w)$/gi;
+  const todo = toDoInputField.value.trim();
+
+  if (regex.test(todo)) {
+    addToDoInDb(todo)
+      .then(objId => {
+        const toDoHtml = `<div class="card flex justify-space-between align-center gap-2" id="todo-${objId}">
+            <p class="card__label">${todo}</p>
+            <div class="card__btns--wrapper">
+              <button class="btn edit-btn" title="edit todo">
+                <img src=${editIcon} alt="edit icon" class="edit-icon"/>
+              </button>
+              <button class="btn delete-btn" title="delete todo">
+                <img src=${deleteIcon} alt="delete icon" class="delete-icon"/>
+              </button>
+              <button class="btn update-btn" title="update todo">
+                <img src=${updateIcon} alt="update icon" class="update-icon"/>
+              </button>
+            </div>
+          </div>`;
+
+        toDosContainer.style.display = "block";
+        toDosContainer.insertAdjacentHTML("afterbegin", toDoHtml);
+
+        toDoInputField.value = "";
+        toDoInputField.focus();
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+};
+
+/* ------------------ Event Handlers -------------------- */
 
 // Set focus to todo input field on window loading
 window.onload = () => toDoInputField.focus();
