@@ -22,7 +22,7 @@
     "prefer-template": 2,
     "object-shorthand": 2,
     "prefer-spread": 2,
-    "prefer-destructuring": 2
+    "prefer-destructuring": 0
   },
   "ignorePatterns": ["dist", "node_modules", "functions"]
 }
