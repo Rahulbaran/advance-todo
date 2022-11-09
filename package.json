@@ -6,6 +6,7 @@
     "prebuild": "rm -rf dist",
     "start": "npm run prebuild && parcel src/index.html",
     "build": "parcel build src/index.html",
+    "ntl:dev": "netlify dev",
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint --fix src/**/*.js"
   },
