@@ -71,6 +71,13 @@ const addToDo = () => {
   }
 };
 
+// Function to toggle card buttons
+const toggleCardBtns = (btnsParent, displays) => {
+  displays.forEach((display, index) => {
+    btnsParent.children[index].style.display = display;
+  });
+};
+
 /* ------------------ Event Handlers -------------------- */
 
 // Set focus to todo input field on window loading
@@ -105,6 +112,7 @@ window.onkeydown = e => {
 
 // Event Handler for todos container
 toDosContainer.onclick = e => {
+  // WHEN DELETE BUTTON IS CLICKED
   if (e.target.matches(".delete-btn") || e.target.matches(".delete-icon")) {
     const cardId = e.target.closest(".card").id.split("-")[1];
 
@@ -115,5 +123,29 @@ toDosContainer.onclick = e => {
       .catch(error => {
         console.error(error);
       });
+  }
+
+  // WHEN EDIT BUTTON IS CLICKED
+  else if (e.target.matches(".edit-btn") || e.target.matches(".edit-icon")) {
+    const toDoTxt = e.target.closest(".card__btns--wrapper").previousElementSibling;
+
+    toDoTxt.setAttribute("contentEditable", "true");
+    toDoTxt.classList.add("card-label-edit");
+
+    toggleCardBtns(e.target.closest(".card__btns--wrapper"), ["none", "none", "inline-block"]);
+  }
+
+  // WHEN UPDATE BUTTON IS CLICKED
+  else if (e.target.matches(".update-btn") || e.target.matches(".update-icon")) {
+    const toDoTxt = e.target.closest(".card__btns--wrapper").previousElementSibling;
+
+    toDoTxt.setAttribute("contentEditable", "false");
+    toDoTxt.classList.remove("card-label-edit");
+
+    toggleCardBtns(e.target.closest(".card__btns--wrapper"), [
+      "inline-block",
+      "inline-block",
+      "none"
+    ]);
   }
 };
