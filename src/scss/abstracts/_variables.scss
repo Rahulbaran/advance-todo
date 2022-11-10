@@ -31,6 +31,7 @@
   --todo-input-bg: hsl(219deg, 64%, 8%);
   --todos-container-bg: hsl(219deg 14% 38%);
   --card-bg: hsl(219deg 74% 8%);
+  --card-label-border: hsl(309deg 3% 22%);
   --logo-shadow: hsl(240 74% 5%/0.4);
   --heading: hsl(var(--grey));
   --text: hsl(var(--grey));
@@ -47,7 +48,8 @@
     --icon-hover-bg: hsl(81deg 77% 68%);
     --todos-container-bg: hsl(81deg 77% 85%);
     --todo-input-bg: hsl(81deg 77% 83%);
-    --card-bg: hsl(81deg 77% 75%);
+    --card-bg: hsl(81deg 77% 77%);
+    --card-label-border: hsl(141deg 40% 70%);
     --heading: hsl(var(--green));
     --text: hsl(var(--green));
     --todo-input-border: hsl(141deg 40% 70%);
@@ -65,7 +67,8 @@
   --icon-hover-bg: hsl(81deg 77% 68%);
   --todos-container-bg: hsl(81deg 77% 85%);
   --todo-input-bg: hsl(81deg 77% 83%);
-  --card-bg: hsl(81deg 77% 75%);
+  --card-bg: hsl(81deg 77% 77%);
+  --card-label-border: hsl(141deg 40% 70%);
   --heading: hsl(var(--green));
   --text: hsl(var(--green));
   --todo-input-border: hsl(141deg 40% 70%);
@@ -83,6 +86,7 @@
   --todo-input-bg: hsl(219deg, 64%, 8%);
   --todos-container-bg: hsl(219deg 14% 38%);
   --card-bg: hsl(219deg 74% 8%);
+  --card-label-border: hsl(309deg 3% 22%);
   --logo-shadow: hsl(240 74% 5%/0.4);
   --heading: hsl(var(--grey));
   --text: hsl(var(--grey));

@@ -8,3 +8,9 @@
     margin-block-end: calc(var(--base-margin) * 0.75);
   }
 }
+
+.card__label.card-label-edit {
+  outline: 2px solid var(--card-label-border);
+  caret-color: var(--caret);
+  padding-inline: var(--base-padding);
+}
