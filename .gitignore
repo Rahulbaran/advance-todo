@@ -88,3 +88,6 @@ Thumbs.db
 
 # Percel cache
 .parcel-cache
+
+# Local Netlify folder
+.netlify

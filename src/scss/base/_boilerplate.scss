@@ -1,0 +1,55 @@
+@use "../abstracts/" as a;
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  min-block-size: 100vh;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-thumb-bg) var(--scroll-track-bg);
+  // scrollbar-gutter: stable;
+
+  @media (prefers-reduced-motion) {
+    scroll-behavior: auto;
+  }
+  @include a.bp(medium) {
+    font-size: 81.25%;
+  }
+  @include a.bp(large) {
+    font-size: 100%;
+  }
+  @include a.bp(xlarge) {
+    font-size: 118.25%;
+  }
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  min-block-size: 100vh;
+  font: var(--font-wt-regular) var(--base-font-size) / var(--base-line-height)
+    var(--font-stack-epilogue);
+  background-color: var(--body-bg);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 4.15rem 1fr 2rem;
+}
+
+::-webkit-scrollbar {
+  inline-size: 9px;
+  block-size: 9px;
+
+  &-track {
+    background-color: var(--scroll-track-bg);
+  }
+  &-thumb {
+    border-radius: calc(var(--base-border-radius, 20px) * 0.1);
+    background-color: var(--scroll-thumb-bg);
+  }
+}

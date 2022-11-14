@@ -1,0 +1,16 @@
+.card {
+  background-color: var(--card-bg);
+  padding: calc(var(--base-padding) * 0.5) calc(var(--base-padding) * 1.25);
+  border-radius: calc(var(--base-border-radius) * 0.2);
+  scroll-snap-align: end;
+
+  &:not(:last-child) {
+    margin-block-end: calc(var(--base-margin) * 0.75);
+  }
+}
+
+.card__label.card-label-edit {
+  outline: 2px solid var(--card-label-border);
+  caret-color: var(--caret);
+  padding-inline: var(--base-padding);
+}

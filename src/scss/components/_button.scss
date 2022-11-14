@@ -1,0 +1,46 @@
+.btn {
+  --btn-padding: calc(var(--base-padding) * 1.25);
+  background-color: transparent;
+  border: none;
+  padding: var(--btn-padding);
+  border-radius: 50%;
+
+  & img {
+    inline-size: 1.4rem;
+    aspect-ratio: 1;
+
+    &[alt="edit icon"] {
+      inline-size: 1.15rem;
+    }
+
+    &[alt="plus icon"] {
+      inline-size: 1.8rem;
+    }
+
+    &[data-mode-icon] {
+      inline-size: 1.75rem;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--icon-hover-bg);
+  }
+}
+
+.add-btn {
+  --btn-padding: var(--base-padding);
+  border-radius: 0;
+}
+
+.edit-btn {
+  --btn-padding: calc(var(--base-padding) * 1.5);
+
+  & img[src$="edit.svg"] {
+    inline-size: 1rem;
+  }
+}
+
+.update-btn {
+  display: none;
+}
