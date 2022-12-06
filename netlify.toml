@@ -7,6 +7,11 @@
     node_bundler = 'esbuild'
     external_node_modules = ['mongodb']
 
+[[redirects]]
+    from = '/*'
+    to = '/'
+    force = true
+
 [dev]
     command = "npm start"
     publish = "src"
