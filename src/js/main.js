@@ -1,3 +1,4 @@
+import { addToDoInDb, deleteToDoInDb, updateToDoInDb } from "./dbFunctions";
 import moonIcon from "../../public/logo&icons/moon.svg";
 import sunIcon from "../../public/logo&icons/sun.svg";
 import editIcon from "../../public/logo&icons/edit.svg";
@@ -11,30 +12,28 @@ const toDoInputField = document.querySelector(".todo__input--field");
 const toDoBtn = document.querySelector(".add-btn");
 const toDosContainer = document.querySelector(".todos__container");
 
-// ---------------------- Functions ----------------------- //
+let toDosList = [];
+
+// ======================== Functions ========================== //
 const updateImgAttr = (imgUrl, altText) => {
   modeBtnImg.src = imgUrl;
   modeBtnImg.setAttribute("alt", altText);
 };
 
-const addToDoInDb = async todo => {
-  try {
-    const response = await fetch(`/.netlify/functions/createTodo?todo=${todo}`);
-
-    return await response.json();
-  } catch (error) {
-    return error;
-  }
+const storeInStorage = () => {
+  localStorage.setItem("todos", JSON.stringify(toDosList));
 };
 
-const deleteToDoInDb = async id => {
-  try {
-    const response = await fetch(`/.netlify/functions/deleteTodo?id=${id}`);
+const generateToDoHtml = (objId, todo) => {
+  const toDoHtml = `<div class="card flex justify-space-between align-center gap-2" id="todo-${objId}">
+            <p class="card__label">${todo}</p><div class="card__btns--wrapper">
+            <button class="btn edit-btn" title="edit todo"><img src=${editIcon} alt="edit icon" class="edit-icon"/>
+            </button><button class="btn delete-btn" title="delete todo"><img src=${deleteIcon} alt="delete icon" class="delete-icon"/>
+            </button><button class="btn update-btn" title="update todo"><img src=${updateIcon} alt="update icon" class="update-icon"/>
+            </button></div></div>`;
 
-    return response.text();
-  } catch (error) {
-    return error;
-  }
+  toDosContainer.style.display = "block";
+  toDosContainer.insertAdjacentHTML("afterbegin", toDoHtml);
 };
 
 const addToDo = () => {
@@ -44,24 +43,13 @@ const addToDo = () => {
   if (regex.test(todo)) {
     addToDoInDb(todo)
       .then(objId => {
-        const toDoHtml = `<div class="card flex justify-space-between align-center gap-2" id="todo-${objId}">
-            <p class="card__label">${todo}</p>
-            <div class="card__btns--wrapper">
-              <button class="btn edit-btn" title="edit todo">
-                <img src=${editIcon} alt="edit icon" class="edit-icon"/>
-              </button>
-              <button class="btn delete-btn" title="delete todo">
-                <img src=${deleteIcon} alt="delete icon" class="delete-icon"/>
-              </button>
-              <button class="btn update-btn" title="update todo">
-                <img src=${updateIcon} alt="update icon" class="update-icon"/>
-              </button>
-            </div>
-          </div>`;
+        toDosList.push({
+          id: objId,
+          toDoLabel: todo
+        });
+        storeInStorage();
 
-        toDosContainer.style.display = "block";
-        toDosContainer.insertAdjacentHTML("afterbegin", toDoHtml);
-
+        generateToDoHtml(objId, todo);
         toDoInputField.value = "";
         toDoInputField.focus();
       })
@@ -78,10 +66,17 @@ const toggleCardBtns = (btnsParent, displays) => {
   });
 };
 
-/* ------------------ Event Handlers -------------------- */
+/* ===================== Event Handlers ======================= */
 
-// Set focus to todo input field on window loading
-window.onload = () => toDoInputField.focus();
+// Take todos from localStorage, display them in UI & set focus
+window.onload = () => {
+  toDoInputField.focus();
+
+  toDosList = JSON.parse(localStorage.getItem("todos")) || [];
+  toDosList.forEach(todo => {
+    generateToDoHtml(todo.id, todo.toDoLabel);
+  });
+};
 
 // Check User color-preference
 const userDarkPreference = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -104,7 +99,7 @@ colorModeBtn.addEventListener("click", () => {
   }
 });
 
-// Event Handler for toDoBtn and Enter key
+// Event Handler for adding todo in database
 toDoBtn.addEventListener("click", addToDo);
 window.onkeydown = e => {
   if (e.keyCode === 13) addToDo();
@@ -118,7 +113,14 @@ toDosContainer.onclick = e => {
 
     deleteToDoInDb(cardId)
       .then(() => {
+        toDosList.splice(
+          toDosList.findIndex(todo => todo.id === cardId),
+          1
+        );
+        storeInStorage();
+
         e.target.closest(".card").remove();
+        if (toDosList.length === 0) toDosContainer.style.display = "none";
       })
       .catch(error => {
         console.error(error);
@@ -137,15 +139,30 @@ toDosContainer.onclick = e => {
 
   // WHEN UPDATE BUTTON IS CLICKED
   else if (e.target.matches(".update-btn") || e.target.matches(".update-icon")) {
-    const toDoTxt = e.target.closest(".card__btns--wrapper").previousElementSibling;
+    const regex = /^(\w)[\w\s]{3,48}(\w)$/gi;
 
-    toDoTxt.setAttribute("contentEditable", "false");
-    toDoTxt.classList.remove("card-label-edit");
+    const cardId = e.target.closest(".card").id.split("-")[1];
+    const toDoLabel = e.target.closest(".card__btns--wrapper").previousElementSibling;
+    const toDo = toDoLabel.textContent.trim();
 
-    toggleCardBtns(e.target.closest(".card__btns--wrapper"), [
-      "inline-block",
-      "inline-block",
-      "none"
-    ]);
+    if (regex.test(toDo)) {
+      updateToDoInDb(cardId, toDo)
+        .then(() => {
+          toDoLabel.setAttribute("contentEditable", "false");
+          toDoLabel.classList.remove("card-label-edit");
+
+          toggleCardBtns(e.target.closest(".card__btns--wrapper"), [
+            "inline-block",
+            "inline-block",
+            "none"
+          ]);
+
+          toDosList[toDosList.findIndex(todo => todo.id === cardId)].toDoLabel = toDo;
+          storeInStorage();
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
   }
 };
