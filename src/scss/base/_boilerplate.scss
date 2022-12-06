@@ -1,25 +1,24 @@
 @use "../abstracts/" as a;
 
 html {
-  font-size: 62.5%;
+  font-size: 75%;
   box-sizing: border-box;
   min-block-size: 100vh;
-  scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: var(--scroll-thumb-bg) var(--scroll-track-bg);
   // scrollbar-gutter: stable;
 
-  @media (prefers-reduced-motion) {
-    scroll-behavior: auto;
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
   }
   @include a.bp(medium) {
-    font-size: 81.25%;
+    font-size: 87.5%;
   }
   @include a.bp(large) {
     font-size: 100%;
   }
   @include a.bp(xlarge) {
-    font-size: 118.25%;
+    font-size: 112.5%;
   }
 }
 
