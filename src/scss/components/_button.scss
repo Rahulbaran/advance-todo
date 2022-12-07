@@ -1,9 +1,12 @@
 .btn {
   --btn-padding: calc(var(--base-padding) * 1.25);
+  --icon-bg-opacity: 0.25;
   background-color: transparent;
   border: none;
   padding: var(--btn-padding);
   border-radius: 50%;
+  background-color: hsl(var(--btn-icon-bg) / var(--icon-bg-opacity));
+  transition: background-color 500ms ease;
 
   & img {
     inline-size: 1.4rem;
@@ -24,7 +27,7 @@
 
   &:hover {
     cursor: pointer;
-    background-color: var(--icon-hover-bg);
+    --icon-bg-opacity: 1;
   }
 }
 
@@ -35,6 +38,7 @@
 
 .edit-btn {
   --btn-padding: calc(var(--base-padding) * 1.5);
+  margin-right: calc(var(--base-margin) * 0.75);
 
   & img[src$="edit.svg"] {
     inline-size: 1rem;
