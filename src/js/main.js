@@ -79,21 +79,20 @@ window.onload = () => {
 };
 
 // Check User color-preference
-const userDarkPreference = window.matchMedia("(prefers-color-scheme: dark)").matches;
-if (userDarkPreference) {
-  updateImgAttr(moonIcon, "moon icon");
+if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+  updateImgAttr(sunIcon, "sun icon");
 }
 
 // Event handler for colorModeBtn with click event
 colorModeBtn.addEventListener("click", () => {
   const getModeIcon = modeBtnImg.getAttribute("alt");
 
-  if (getModeIcon === "moon icon") {
-    updateImgAttr(sunIcon, "sun icon");
+  if (getModeIcon === "sun icon") {
+    updateImgAttr(moonIcon, "moon icon");
     document.body.classList.remove("dark-color-pallete");
     document.body.classList.add("light-color-pallete");
   } else {
-    updateImgAttr(moonIcon, "moon icon");
+    updateImgAttr(sunIcon, "sun icon");
     document.body.classList.remove("light-color-pallete");
     document.body.classList.add("dark-color-pallete");
   }
